@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Strategy AI - Race Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Formula1:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-flag-checkered"></i>
+                <span>F1 Strategy AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#dashboard" class="nav-link active">Dashboard</a></li>
+                <li><a href="#live-race" class="nav-link">Live Race</a></li>
+                <li><a href="#post-race" class="nav-link">Post Race Data</a></li>
+                <li><a href="#strategy" class="nav-link">AI Strategy</a></li>
+                <li><a href="#analytics" class="nav-link">Analytics</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">F1 Strategy AI Dashboard</h1>
+                    <p class="hero-subtitle">AI-Powered Race Analysis & Strategic Insights</p>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">23</div>
+                        <div class="stat-label">Race Weekend</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">20</div>
+                        <div class="stat-label">Drivers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Teams</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Race Section -->
+        <section id="live-race" class="section">
+            <h2 class="section-title">Live Race Data</h2>
+            <div class="race-container">
+                <div class="track-visualization">
+                    <div class="track-info">
+                        <h3>Current Race: Abu Dhabi Grand Prix</h3>
+                        <div class="race-status">
+                            <span class="status-indicator live"></span>
+                            <span>Live - Lap 45/58</span>
+                        </div>
+                    </div>
+                    <div class="track-map">
+                        <svg viewBox="0 0 400 300" class="circuit-svg">
+                            <!-- Track outline -->
+                            <path d="M50 150 Q100 50 200 75 Q300 100 350 150 Q300 250 200 225 Q100 250 50 150" 
+                                  fill="none" stroke="#e10600" stroke-width="3"/>
+                            <!-- Car positions (will be updated by JavaScript) -->
+                            <circle class="car-position" cx="60" cy="150" r="4" fill="#0090ff" data-driver="VER"/>
+                            <circle class="car-position" cx="65" cy="148" r="4" fill="#dc143c" data-driver="LEC"/>
+                            <circle class="car-position" cx="70" cy="152" r="4" fill="#00d2be" data-driver="HAM"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="live-timing">
+                    <h3>Live Timing</h3>
+                    <div class="timing-table">
+                        <div class="timing-header">
+                            <span>Pos</span>
+                            <span>Driver</span>
+                            <span>Gap</span>
+                            <span>Tire</span>
+                            <span>Laps</span>
+                        </div>
+                        <div class="timing-row">
+                            <span class="position">1</span>
+                            <span class="driver">M. Verstappen</span>
+                            <span class="gap">Leader</span>
+                            <span class="tire hard">H</span>
+                            <span class="laps">12</span>
+                        </div>
+                        <div class="timing-row">
+                            <span class="position">2</span>
+                            <span class="driver">C. Leclerc</span>
+                            <span class="gap">+2.456</span>
+                            <span class="tire medium">M</span>
+                            <span class="laps">8</span>
+                        </div>
+                        <div class="timing-row">
+                            <span class="position">3</span>
+                            <span class="driver">L. Hamilton</span>
+                            <span class="gap">+5.123</span>
+                            <span class="tire soft">S</span>
+                            <span class="laps">15</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Post Race Data Section -->
+        <section id="post-race" class="section">
+            <h2 class="section-title">Post Race Data Library</h2>
+            <div class="race-library">
+                <div class="filter-controls">
+                    <select id="seasonFilter" class="filter-select">
+                        <option value="2024">2024 Season</option>
+                        <option value="2023">2023 Season</option>
+                        <option value="2022">2022 Season</option>
+                    </select>
+                    <input type="text" id="raceSearch" placeholder="Search races..." class="search-input">
+                </div>
+                
+                <div class="race-grid">
+                    <div class="race-card" data-race="abu-dhabi-2024">
+                        <div class="race-header">
+                            <img src="https://via.placeholder.com/60x40/e10600/ffffff?text=UAE" alt="UAE Flag" class="flag">
+                            <div class="race-info">
+                                <h3>Abu Dhabi Grand Prix</h3>
+                                <p>December 8, 2024</p>
+                            </div>
+                        </div>
+                        <div class="race-winner">
+                            <span class="winner-name">M. Verstappen</span>
+                            <span class="winner-time">1:26:38.736</span>
+                        </div>
+                        <button class="view-data-btn" onclick="loadRaceData('abu-dhabi-2024')">
+                            <i class="fas fa-chart-line"></i> View Data
+                        </button>
+                    </div>
+                    
+                    <div class="race-card" data-race="brazil-2024">
+                        <div class="race-header">
+                            <img src="https://via.placeholder.com/60x40/009c3b/ffffff?text=BR" alt="Brazil Flag" class="flag">
+                            <div class="race-info">
+                                <h3>São Paulo Grand Prix</h3>
+                                <p>November 3, 2024</p>
+                            </div>
+                        </div>
+                        <div class="race-winner">
+                            <span class="winner-name">M. Verstappen</span>
+                            <span class="winner-time">2:06:54.430</span>
+                        </div>
+                        <button class="view-data-btn" onclick="loadRaceData('brazil-2024')">
+                            <i class="fas fa-chart-line"></i> View Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Race Data Visualization Modal -->
+            <div id="raceDataModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 id="modalRaceTitle">Race Data Analysis</h2>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="data-tabs">
+                            <button class="tab-btn active" data-tab="positions">Position Changes</button>
+                            <button class="tab-btn" data-tab="tires">Tire Strategy</button>
+                            <button class="tab-btn" data-tab="telemetry">Telemetry</button>
+                        </div>
+                        <div class="tab-content" id="tabContent">
+                            <!-- Dynamic content loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Strategy Section -->
+        <section id="strategy" class="section">
+            <h2 class="section-title">AI Strategy Analysis</h2>
+            <div class="strategy-container">
+                <div class="strategy-input">
+                    <h3>Ask AI Strategy Assistant</h3>
+                    <textarea id="strategyQuery" placeholder="Ask about tire strategies, pit windows, weather impact, or race predictions..."
+                              rows="4" class="strategy-textarea"></textarea>
+                    <button onclick="getAIStrategy()" class="ai-btn">
+                        <i class="fas fa-robot"></i> Analyze Strategy
+                    </button>
+                </div>
+                
+                <div class="strategy-output">
+                    <h3>AI Recommendations</h3>
+                    <div id="aiResponse" class="ai-response">
+                        <div class="loading hidden" id="aiLoading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>AI is analyzing...</span>
+                        </div>
+                        <div class="response-content" id="responseContent">
+                            <p>Ask the AI assistant about F1 strategies, tire management, pit stop windows, and race predictions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="strategy-cards">
+                <div class="strategy-card">
+                    <h4><i class="fas fa-circle"></i> Tire Strategy</h4>
+                    <p>Optimal tire compound selection and pit window analysis</p>
+                </div>
+                <div class="strategy-card">
+                    <h4><i class="fas fa-cloud-rain"></i> Weather Impact</h4>
+                    <p>Real-time weather analysis and strategy adjustments</p>
+                </div>
+                <div class="strategy-card">
+                    <h4><i class="fas fa-flag-checkered"></i> Race Predictions</h4>
+                    <p>AI-powered race outcome and position predictions</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics" class="section">
+            <h2 class="section-title">Performance Analytics</h2>
+            <div class="analytics-grid">
+                <div class="chart-container">
+                    <h3>Driver Performance Trends</h3>
+                    <canvas id="performanceChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Tire Degradation Analysis</h3>
+                    <canvas id="tireChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Pit Stop Efficiency</h3>
+                    <canvas id="pitstopChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Weather Impact on Lap Times</h3>
+                    <canvas id="weatherChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 F1 Strategy AI. Powered by Gemini AI & Google Analytics.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
